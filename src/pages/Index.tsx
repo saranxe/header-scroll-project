@@ -44,9 +44,9 @@ const Index = () => {
       name: 'Комплексный обед',
       image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80',
       items: [
-        { name: 'Обед №1', description: 'Суп + Второе + Салат + Напиток', price: '450 ₽' },
-        { name: 'Обед №2', description: 'Плов + Салат + Чай', price: '500 ₽' },
-        { name: 'Обед №3', description: 'Лагман + Самса + Напиток', price: '520 ₽' }
+        { name: 'Обед №1', description: 'Суп + Второе + Салат + Напиток', price: '450 ₽', image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80' },
+        { name: 'Обед №2', description: 'Плов + Салат + Чай', price: '500 ₽', image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80' },
+        { name: 'Обед №3', description: 'Лагман + Самса + Напиток', price: '520 ₽', image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=80' }
       ]
     },
     {
@@ -55,45 +55,45 @@ const Index = () => {
       items: [
         { name: 'Плов с бараниной', description: 'Ароматный рис с нежной бараниной, морковью и нутом', price: '850 ₽', image: 'https://cdn.poehali.dev/projects/62c59828-fd54-41ce-bde1-5be26c704956/files/6d754689-9882-4b51-aa50-1f5c4b7dd178.jpg' },
         { name: 'Шашлык из баранины', description: 'Сочные кусочки мяса, маринованные в специях', price: '1200 ₽', image: 'https://cdn.poehali.dev/projects/62c59828-fd54-41ce-bde1-5be26c704956/files/dbfbb6bb-d211-4406-aa78-1b2a3d1e2f25.jpg' },
-        { name: 'Лагман', description: 'Домашняя лапша с мясом и овощами в пряном бульоне', price: '650 ₽' },
-        { name: 'Манты', description: 'Паровые пельмени с бараниной и луком', price: '550 ₽' },
-        { name: 'Шурпа', description: 'Наваристый суп с бараниной и овощами', price: '450 ₽' }
+        { name: 'Лагман', description: 'Домашняя лапша с мясом и овощами в пряном бульоне', price: '650 ₽', image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800&q=80' },
+        { name: 'Манты', description: 'Паровые пельмени с бараниной и луком', price: '550 ₽', image: 'https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=800&q=80' },
+        { name: 'Шурпа', description: 'Наваристый суп с бараниной и овощами', price: '450 ₽', image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800&q=80' }
       ]
     },
     {
       name: 'Десерты',
       image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=80',
       items: [
-        { name: 'Пахлава', description: 'Слоеное тесто с орехами и медом', price: '250 ₽' },
-        { name: 'Чак-чак', description: 'Традиционная сладость с медом', price: '200 ₽' },
-        { name: 'Халва', description: 'Восточная сладость из кунжута', price: '180 ₽' }
+        { name: 'Пахлава', description: 'Слоеное тесто с орехами и медом', price: '250 ₽', image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=800&q=80' },
+        { name: 'Чак-чак', description: 'Традиционная сладость с медом', price: '200 ₽', image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=80' },
+        { name: 'Халва', description: 'Восточная сладость из кунжута', price: '180 ₽', image: 'https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?w=800&q=80' }
       ]
     },
     {
       name: 'Выпечка',
       image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&q=80',
       items: [
-        { name: 'Самса с мясом', description: 'Хрустящие слоеные пирожки с сочной начинкой', price: '200 ₽' },
-        { name: 'Самса с тыквой', description: 'Вегетарианский вариант с ароматной тыквой', price: '150 ₽' },
-        { name: 'Лепешка тандырная', description: 'Свежая лепешка из тандыра', price: '80 ₽' }
+        { name: 'Самса с мясом', description: 'Хрустящие слоеные пирожки с сочной начинкой', price: '200 ₽', image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&q=80' },
+        { name: 'Самса с тыквой', description: 'Вегетарианский вариант с ароматной тыквой', price: '150 ₽', image: 'https://images.unsplash.com/photo-1509358271058-acd22cc93898?w=800&q=80' },
+        { name: 'Лепешка тандырная', description: 'Свежая лепешка из тандыра', price: '80 ₽', image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=800&q=80' }
       ]
     },
     {
       name: 'Банкетное меню',
       image: 'https://images.unsplash.com/photo-1555244162-803834f70033?w=800&q=80',
       items: [
-        { name: 'Банкет Стандарт', description: 'Ассорти закусок, плов, шашлык, салаты', price: '2500 ₽/чел' },
-        { name: 'Банкет Премиум', description: 'Расширенное меню с деликатесами', price: '3500 ₽/чел' },
-        { name: 'Фуршет', description: 'Легкие закуски и напитки', price: '1500 ₽/чел' }
+        { name: 'Банкет Стандарт', description: 'Ассорти закусок, плов, шашлык, салаты', price: '2500 ₽/чел', image: 'https://images.unsplash.com/photo-1555244162-803834f70033?w=800&q=80' },
+        { name: 'Банкет Премиум', description: 'Расширенное меню с деликатесами', price: '3500 ₽/чел', image: 'https://images.unsplash.com/photo-1530062845289-9109b2c9c868?w=800&q=80' },
+        { name: 'Фуршет', description: 'Легкие закуски и напитки', price: '1500 ₽/чел', image: 'https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?w=800&q=80' }
       ]
     },
     {
       name: 'Шаверма',
       image: 'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=800&q=80',
       items: [
-        { name: 'Шаверма с курицей', description: 'Сочная курица с овощами в лаваше', price: '350 ₽' },
-        { name: 'Шаверма с говядиной', description: 'Говядина с фирменным соусом', price: '400 ₽' },
-        { name: 'Шаверма вегетарианская', description: 'Овощи и сыр фета', price: '300 ₽' }
+        { name: 'Шаверма с курицей', description: 'Сочная курица с овощами в лаваше', price: '350 ₽', image: 'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=800&q=80' },
+        { name: 'Шаверма с говядиной', description: 'Говядина с фирменным соусом', price: '400 ₽', image: 'https://images.unsplash.com/photo-1599974168928-3fce48e5f028?w=800&q=80' },
+        { name: 'Шаверма вегетарианская', description: 'Овощи и сыр фета', price: '300 ₽', image: 'https://images.unsplash.com/photo-1592415499556-fa132b589e16?w=800&q=80' }
       ]
     }
   ];
@@ -313,60 +313,108 @@ const Index = () => {
             Популярные блюда восточной кухни
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-            {menuCategories.map((category, index) => (
-              <div key={index}>
-                <button
-                  onClick={() => toggleCategory(index)}
-                  className="w-full relative h-40 md:h-56 rounded-xl overflow-hidden group cursor-pointer"
-                >
-                  <img 
-                    src={category.image}
-                    alt={category.name}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end">
-                    <div className="w-full p-3 md:p-6 flex justify-between items-center">
-                      <h4 className="text-lg md:text-2xl font-bold text-white">{category.name}</h4>
-                      <Icon 
-                        name={expandedCategory === index ? "ChevronUp" : "ChevronDown"} 
-                        size={20} 
-                        className="text-white transition-transform md:w-6 md:h-6"
+          <div className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <button
+                onClick={() => toggleCategory(0)}
+                className="relative h-48 md:h-64 rounded-xl overflow-hidden group cursor-pointer shadow-lg hover:shadow-xl transition-all"
+              >
+                <img 
+                  src={menuCategories[0].image}
+                  alt={menuCategories[0].name}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end">
+                  <div className="w-full p-4 md:p-6 flex justify-between items-center">
+                    <h4 className="text-xl md:text-2xl font-bold text-white">{menuCategories[0].name}</h4>
+                    <Icon 
+                      name={expandedCategory === 0 ? "ChevronUp" : "ChevronDown"} 
+                      size={24} 
+                      className="text-white"
+                    />
+                  </div>
+                </div>
+              </button>
+            </div>
+
+            <div className={`overflow-hidden transition-all duration-500 ${
+              expandedCategory === 0 ? 'max-h-[2000px]' : 'max-h-0'
+            }`}>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-6">
+                {menuCategories[0].items.map((item, itemIndex) => (
+                  <Card key={itemIndex} className="overflow-hidden hover:shadow-lg transition-shadow">
+                    <div className="aspect-video w-full overflow-hidden">
+                      <img 
+                        src={item.image}
+                        alt={item.name}
+                        className="w-full h-full object-cover"
                       />
                     </div>
-                  </div>
-                </button>
-                
-                <div className={`overflow-hidden transition-all duration-500 ${
-                  expandedCategory === index ? 'max-h-[2000px] mt-3 md:mt-4' : 'max-h-0'
-                }`}>
-                  <div className="space-y-2 md:space-y-3 pb-3 md:pb-4">
-                    {category.items.map((item, itemIndex) => (
-                      <Card key={itemIndex} className="overflow-hidden hover:shadow-lg transition-shadow">
-                        <div className="flex gap-3 md:gap-4">
-                          {item.image && (
-                            <div className="w-20 h-20 md:w-24 md:h-24 flex-shrink-0">
+                    <div className="p-4">
+                      <h5 className="text-lg font-semibold mb-2">{item.name}</h5>
+                      <p className="text-muted-foreground text-sm mb-3">{item.description}</p>
+                      <div className="flex justify-between items-center">
+                        <span className="text-xl font-bold text-primary">{item.price}</span>
+                      </div>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {menuCategories.slice(1).map((category, index) => (
+                <div key={index + 1}>
+                  <button
+                    onClick={() => toggleCategory(index + 1)}
+                    className="w-full relative h-48 md:h-56 rounded-xl overflow-hidden group cursor-pointer shadow-lg hover:shadow-xl transition-all"
+                  >
+                    <img 
+                      src={category.image}
+                      alt={category.name}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end">
+                      <div className="w-full p-4 flex justify-between items-center">
+                        <h4 className="text-lg md:text-xl font-bold text-white">{category.name}</h4>
+                        <Icon 
+                          name={expandedCategory === index + 1 ? "ChevronUp" : "ChevronDown"} 
+                          size={20} 
+                          className="text-white"
+                        />
+                      </div>
+                    </div>
+                  </button>
+                  
+                  <div className={`overflow-hidden transition-all duration-500 ${
+                    expandedCategory === index + 1 ? 'max-h-[2000px] mt-4' : 'max-h-0'
+                  }`}>
+                    <div className="space-y-3 pb-4">
+                      {category.items.map((item, itemIndex) => (
+                        <Card key={itemIndex} className="overflow-hidden hover:shadow-lg transition-shadow">
+                          <div className="flex gap-4">
+                            <div className="w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
                               <img 
                                 src={item.image}
                                 alt={item.name}
-                                className="w-full h-full object-cover rounded-lg"
+                                className="w-full h-full object-cover"
                               />
                             </div>
-                          )}
-                          <div className="flex-1 p-3 md:p-4 flex justify-between items-start gap-2">
-                            <div className="flex-1">
-                              <h5 className="text-sm md:text-lg font-semibold mb-0.5 md:mb-1">{item.name}</h5>
-                              <p className="text-muted-foreground text-xs md:text-sm">{item.description}</p>
+                            <div className="flex-1 p-4 flex flex-col justify-between">
+                              <div>
+                                <h5 className="text-base md:text-lg font-semibold mb-1">{item.name}</h5>
+                                <p className="text-muted-foreground text-sm">{item.description}</p>
+                              </div>
+                              <span className="text-lg font-bold text-primary mt-2">{item.price}</span>
                             </div>
-                            <span className="text-sm md:text-lg font-bold text-primary whitespace-nowrap">{item.price}</span>
                           </div>
-                        </div>
-                      </Card>
-                    ))}
+                        </Card>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
