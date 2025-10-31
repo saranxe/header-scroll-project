@@ -24,8 +24,7 @@ const Index = () => {
     window.open(`https://wa.me/79999999999?text=${encodeURIComponent(text)}`, '_blank');
   };
 
-  const [currentMenuCategory, setCurrentMenuCategory] = useState(0);
-  const menuScrollRef = useRef<HTMLDivElement>(null);
+  const [expandedCategory, setExpandedCategory] = useState<number | null>(null);
 
   const menuCategories = [
     {
@@ -86,12 +85,8 @@ const Index = () => {
     }
   ];
 
-  const scrollMenu = (direction: 'left' | 'right') => {
-    if (direction === 'left') {
-      setCurrentMenuCategory(prev => (prev > 0 ? prev - 1 : menuCategories.length - 1));
-    } else {
-      setCurrentMenuCategory(prev => (prev < menuCategories.length - 1 ? prev + 1 : 0));
-    }
+  const toggleCategory = (index: number) => {
+    setExpandedCategory(expandedCategory === index ? null : index);
   };
 
   return (
@@ -238,77 +233,55 @@ const Index = () => {
       </section>
 
       <section id="menu" className="py-20 px-4 bg-card">
-        <div className="container mx-auto max-w-6xl">
+        <div className="container mx-auto max-w-4xl">
           <h3 className="text-3xl md:text-4xl font-bold text-center mb-4">Наше меню</h3>
           <p className="text-center text-muted-foreground mb-12">
             Популярные блюда восточной кухни
           </p>
           
-          <div className="relative">
-            <button 
-              onClick={() => scrollMenu('left')}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-background/90 backdrop-blur-sm p-3 rounded-full shadow-lg hover:bg-background transition-all"
-            >
-              <Icon name="ChevronLeft" size={24} />
-            </button>
-            
-            <button 
-              onClick={() => scrollMenu('right')}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-background/90 backdrop-blur-sm p-3 rounded-full shadow-lg hover:bg-background transition-all"
-            >
-              <Icon name="ChevronRight" size={24} />
-            </button>
-
-            <div className="overflow-hidden px-12">
-              <div 
-                ref={menuScrollRef}
-                className="transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${currentMenuCategory * 100}%)` }}
-              >
-                <div className="flex">
-                  {menuCategories.map((category, catIndex) => (
-                    <div key={catIndex} className="w-full flex-shrink-0">
-                      <div className="mb-8">
-                        <div className="relative h-64 rounded-xl overflow-hidden mb-6">
-                          <img 
-                            src={category.image}
-                            alt={category.name}
-                            className="w-full h-full object-cover"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-                            <h4 className="text-3xl font-bold text-white p-6">{category.name}</h4>
-                          </div>
-                        </div>
-                        
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                          {category.items.map((item, itemIndex) => (
-                            <Card key={itemIndex} className="p-6 hover:shadow-lg transition-shadow">
-                              <div className="flex justify-between items-start mb-2">
-                                <h5 className="text-lg font-semibold">{item.name}</h5>
-                                <span className="text-lg font-bold text-primary whitespace-nowrap ml-2">{item.price}</span>
-                              </div>
-                              <p className="text-muted-foreground text-sm">{item.description}</p>
-                            </Card>
-                          ))}
-                        </div>
-                      </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {menuCategories.map((category, index) => (
+              <div key={index}>
+                <button
+                  onClick={() => toggleCategory(index)}
+                  className="w-full relative h-48 md:h-56 rounded-xl overflow-hidden group cursor-pointer"
+                >
+                  <img 
+                    src={category.image}
+                    alt={category.name}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end">
+                    <div className="w-full p-4 md:p-6 flex justify-between items-center">
+                      <h4 className="text-xl md:text-2xl font-bold text-white">{category.name}</h4>
+                      <Icon 
+                        name={expandedCategory === index ? "ChevronUp" : "ChevronDown"} 
+                        size={24} 
+                        className="text-white transition-transform"
+                      />
                     </div>
-                  ))}
+                  </div>
+                </button>
+                
+                <div className={`overflow-hidden transition-all duration-500 ${
+                  expandedCategory === index ? 'max-h-[2000px] mt-4' : 'max-h-0'
+                }`}>
+                  <div className="space-y-3 pb-4">
+                    {category.items.map((item, itemIndex) => (
+                      <Card key={itemIndex} className="p-4 hover:shadow-lg transition-shadow">
+                        <div className="flex justify-between items-start gap-3">
+                          <div className="flex-1">
+                            <h5 className="text-base md:text-lg font-semibold mb-1">{item.name}</h5>
+                            <p className="text-muted-foreground text-xs md:text-sm">{item.description}</p>
+                          </div>
+                          <span className="text-base md:text-lg font-bold text-primary whitespace-nowrap">{item.price}</span>
+                        </div>
+                      </Card>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-            
-            <div className="flex justify-center gap-2 mt-8">
-              {menuCategories.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentMenuCategory(index)}
-                  className={`w-2 h-2 rounded-full transition-all ${
-                    currentMenuCategory === index ? 'bg-primary w-8' : 'bg-muted-foreground/30'
-                  }`}
-                />
-              ))}
-            </div>
+            ))}
           </div>
         </div>
       </section>
