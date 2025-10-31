@@ -229,9 +229,10 @@ ${customerData.comment ? `Комментарий: ${customerData.comment}` : ''}
 
             <Card className="p-4">
               <h4 className="font-semibold mb-3">Зона доставки</h4>
+              <p className="text-sm text-muted-foreground mb-2">Зеленая зона — радиус 1 км от ресторана</p>
               <div className="h-[300px] rounded-lg overflow-hidden">
                 <iframe
-                  src="https://yandex.ru/map-widget/v1/?ll=37.617635%2C55.755819&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1MzE4MDE1MhI_0KDQvtGB0YHQuNGPLCDQnNC-0YHQutCy0LAsINGD0LvQuNGG0LAg0JrRg9GA0YfQsNGC0L7QstCwLCA50JEiCg1jkhxCFUouWkI%2C&z=13"
+                  src="https://yandex.ru/map-widget/v1/?ll=37.617635%2C55.755819&z=14&l=map&pt=37.617635,55.755819,pm2rdm~37.617635,55.755819,round1000m~37.617635,55.755819,pm2rdl"
                   className="w-full h-full border-0"
                   allowFullScreen
                 />

@@ -271,7 +271,7 @@ const Index = () => {
             </div>
             <div className="h-[300px] md:h-[400px] rounded-lg overflow-hidden order-1 md:order-2">
               <iframe 
-                src="https://yandex.ru/map-widget/v1/?ll=37.617635%2C55.755819&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1MzE4MDE1MhI_0KDQvtGB0YHQuNGPLCDQnNC-0YHQutCy0LAsINGD0LvQuNGG0LAg0JrRg9GA0YfQsNGC0L7QstCwLCA50JEiCg1jkhxCFUouWkI%2C&z=16"
+                src="https://yandex.ru/map-widget/v1/?ll=37.617635%2C55.755819&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1MzE4MDE1MhI_0KDQvtGB0YHQuNGPLCDQnNC-0YHQutCy0LAsINGD0LvQuNGG0LAg0JrRg9GA0YfQsNGC0L7QstCwLCA50JEiCg1jkhxCFUouWkI%2C&z=16&pt=37.617635,55.755819,pm2rdm"
                 className="w-full h-full border-0"
                 allowFullScreen
               />
