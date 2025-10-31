@@ -23,7 +23,15 @@ const Index = () => {
 
   const handleOrder = () => {
     const text = `Здравствуйте! Меня зовут ${orderForm.name}.\nТелефон: ${orderForm.phone}\n${orderForm.message}`;
-    window.open(`https://wa.me/79999999999?text=${encodeURIComponent(text)}`, '_blank');
+    window.open(`https://wa.me/79913251111?text=${encodeURIComponent(text)}`, '_blank');
+  };
+
+  const handleCallClick = () => {
+    window.location.href = 'tel:+79913251111';
+  };
+
+  const handleWhatsAppClick = () => {
+    window.open('https://wa.me/79913251111?text=Здравствуйте! Хочу заказать блюдо', '_blank');
   };
 
   const [expandedCategory, setExpandedCategory] = useState<number | null>(null);
@@ -40,10 +48,10 @@ const Index = () => {
     },
     {
       name: 'Основное меню',
-      image: 'https://images.unsplash.com/photo-1625937286074-9ca519d5d9df?w=800&q=80',
+      image: 'https://cdn.poehali.dev/projects/62c59828-fd54-41ce-bde1-5be26c704956/files/6d754689-9882-4b51-aa50-1f5c4b7dd178.jpg',
       items: [
-        { name: 'Плов с бараниной', description: 'Ароматный рис с нежной бараниной, морковью и нутом', price: '850 ₽' },
-        { name: 'Шашлык из баранины', description: 'Сочные кусочки мяса, маринованные в специях', price: '1200 ₽' },
+        { name: 'Плов с бараниной', description: 'Ароматный рис с нежной бараниной, морковью и нутом', price: '850 ₽', image: 'https://cdn.poehali.dev/projects/62c59828-fd54-41ce-bde1-5be26c704956/files/6d754689-9882-4b51-aa50-1f5c4b7dd178.jpg' },
+        { name: 'Шашлык из баранины', description: 'Сочные кусочки мяса, маринованные в специях', price: '1200 ₽', image: 'https://cdn.poehali.dev/projects/62c59828-fd54-41ce-bde1-5be26c704956/files/dbfbb6bb-d211-4406-aa78-1b2a3d1e2f25.jpg' },
         { name: 'Лагман', description: 'Домашняя лапша с мясом и овощами в пряном бульоне', price: '650 ₽' },
         { name: 'Манты', description: 'Паровые пельмени с бараниной и луком', price: '550 ₽' },
         { name: 'Шурпа', description: 'Наваристый суп с бараниной и овощами', price: '450 ₽' }
@@ -181,8 +189,16 @@ const Index = () => {
         )}
       </header>
 
-      <section className="pt-24 pb-12 md:pb-20 px-4 bg-gradient-to-b from-primary/5 to-background">
-        <div className="container mx-auto max-w-5xl text-center animate-fade-in">
+      <section className="relative pt-24 pb-12 md:pb-20 px-4 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://cdn.poehali.dev/projects/62c59828-fd54-41ce-bde1-5be26c704956/files/60650c26-489c-40e3-95d4-af1a685e11de.jpg"
+            alt="Ресторан Южная ночь"
+            className="w-full h-full object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/80 to-background"></div>
+        </div>
+        <div className="container mx-auto max-w-5xl text-center animate-fade-in relative z-10">
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-foreground">
             Южная ночь
           </h2>
@@ -216,8 +232,8 @@ const Index = () => {
       <section id="location" className="py-12 md:py-20 px-4 bg-card">
         <div className="container mx-auto max-w-5xl">
           <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-8 md:mb-12">Местоположение</h3>
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div className="space-y-6">
+          <div className="grid md:grid-cols-2 gap-8 items-start">
+            <div className="space-y-6 order-2 md:order-1">
               <div className="flex items-start gap-4">
                 <Icon name="MapPin" size={24} className="text-primary mt-1" />
                 <div>
@@ -236,12 +252,16 @@ const Index = () => {
                 <Icon name="Phone" size={24} className="text-primary mt-1" />
                 <div>
                   <h4 className="font-semibold mb-1">Телефон</h4>
-                  <p className="text-muted-foreground">+7 (999) 999-99-99</p>
+                  <p className="text-muted-foreground">+7 (991) 325-11-11</p>
                 </div>
               </div>
             </div>
-            <div className="h-[300px] bg-muted rounded-lg flex items-center justify-center">
-              <Icon name="Map" size={48} className="text-muted-foreground" />
+            <div className="h-[300px] md:h-[400px] rounded-lg overflow-hidden order-1 md:order-2">
+              <img 
+                src="https://cdn.poehali.dev/projects/62c59828-fd54-41ce-bde1-5be26c704956/files/60650c26-489c-40e3-95d4-af1a685e11de.jpg"
+                alt="Интерьер ресторана"
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
@@ -309,13 +329,24 @@ const Index = () => {
                 }`}>
                   <div className="space-y-2 md:space-y-3 pb-3 md:pb-4">
                     {category.items.map((item, itemIndex) => (
-                      <Card key={itemIndex} className="p-3 md:p-4 hover:shadow-lg transition-shadow">
-                        <div className="flex justify-between items-start gap-2 md:gap-3">
-                          <div className="flex-1">
-                            <h5 className="text-sm md:text-lg font-semibold mb-0.5 md:mb-1">{item.name}</h5>
-                            <p className="text-muted-foreground text-xs md:text-sm">{item.description}</p>
+                      <Card key={itemIndex} className="overflow-hidden hover:shadow-lg transition-shadow">
+                        <div className="flex gap-3 md:gap-4">
+                          {item.image && (
+                            <div className="w-20 h-20 md:w-24 md:h-24 flex-shrink-0">
+                              <img 
+                                src={item.image}
+                                alt={item.name}
+                                className="w-full h-full object-cover rounded-lg"
+                              />
+                            </div>
+                          )}
+                          <div className="flex-1 p-3 md:p-4 flex justify-between items-start gap-2">
+                            <div className="flex-1">
+                              <h5 className="text-sm md:text-lg font-semibold mb-0.5 md:mb-1">{item.name}</h5>
+                              <p className="text-muted-foreground text-xs md:text-sm">{item.description}</p>
+                            </div>
+                            <span className="text-sm md:text-lg font-bold text-primary whitespace-nowrap">{item.price}</span>
                           </div>
-                          <span className="text-sm md:text-lg font-bold text-primary whitespace-nowrap">{item.price}</span>
                         </div>
                       </Card>
                     ))}
@@ -380,11 +411,20 @@ const Index = () => {
             Свяжитесь с нами удобным способом
           </p>
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center px-4">
-            <Button size="lg" variant="outline" className="gap-2 w-full sm:w-auto">
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="gap-2 w-full sm:w-auto"
+              onClick={handleCallClick}
+            >
               <Icon name="Phone" size={20} />
               Позвонить
             </Button>
-            <Button size="lg" className="gap-2 w-full sm:w-auto">
+            <Button 
+              size="lg" 
+              className="gap-2 w-full sm:w-auto"
+              onClick={handleWhatsAppClick}
+            >
               <Icon name="MessageCircle" size={20} />
               WhatsApp
             </Button>
@@ -401,7 +441,7 @@ const Index = () => {
             </div>
             <div>
               <h4 className="font-bold text-base md:text-lg mb-3 md:mb-4">Контакты</h4>
-              <p className="text-xs md:text-sm opacity-90">+7 (999) 999-99-99</p>
+              <p className="text-xs md:text-sm opacity-90">+7 (991) 325-11-11</p>
               <p className="text-xs md:text-sm opacity-90">info@southernnight.ru</p>
             </div>
             <div className="sm:col-span-2 md:col-span-1">
@@ -412,6 +452,14 @@ const Index = () => {
 
         </div>
       </footer>
+
+      <button
+        onClick={handleCallClick}
+        className="fixed bottom-6 right-6 bg-primary text-primary-foreground p-4 rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-110 z-50 flex items-center gap-2"
+      >
+        <Icon name="Phone" size={24} />
+        <span className="hidden sm:inline font-semibold">Позвонить</span>
+      </button>
     </div>
   );
 };
