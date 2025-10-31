@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -11,6 +11,8 @@ const Index = () => {
     phone: '',
     message: ''
   });
+
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -134,29 +136,67 @@ const Index = () => {
               Заказать
             </Button>
 
-            <button className="md:hidden">
-              <Icon name="Menu" size={24} />
+            <button 
+              className="md:hidden"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              <Icon name={mobileMenuOpen ? "X" : "Menu"} size={24} />
             </button>
           </div>
         </div>
+
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t bg-white">
+            <nav className="flex flex-col p-4 space-y-3">
+              <a 
+                href="https://eda.yandex.ru/r/uznaa-noc?placeSlug=yuzhnaya_noch_2jp37" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm py-2 hover:text-primary transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <Icon name="ShoppingBag" size={18} />
+                Мы в Яндекс Доставке
+              </a>
+              <button 
+                onClick={() => { scrollToSection('menu'); setMobileMenuOpen(false); }}
+                className="text-sm text-left py-2 hover:text-primary transition-colors"
+              >
+                Меню
+              </button>
+              <button 
+                onClick={() => { scrollToSection('order'); setMobileMenuOpen(false); }}
+                className="text-sm text-left py-2 hover:text-primary transition-colors"
+              >
+                Заказать банкет
+              </button>
+              <button 
+                onClick={() => { scrollToSection('location'); setMobileMenuOpen(false); }}
+                className="text-sm text-left py-2 hover:text-primary transition-colors"
+              >
+                Местоположение
+              </button>
+            </nav>
+          </div>
+        )}
       </header>
 
-      <section className="pt-24 pb-20 px-4 bg-gradient-to-b from-primary/5 to-background">
+      <section className="pt-24 pb-12 md:pb-20 px-4 bg-gradient-to-b from-primary/5 to-background">
         <div className="container mx-auto max-w-5xl text-center animate-fade-in">
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-foreground">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-foreground">
             Южная ночь
           </h2>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-4 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground mb-3 md:mb-4 max-w-2xl mx-auto px-4">
             Аутентичная среднеазиатская кухня в сердце города
           </p>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+          <p className="text-sm md:text-lg text-muted-foreground mb-6 md:mb-8 max-w-2xl mx-auto px-4">
             Традиционные рецепты, свежие продукты и атмосфера восточного гостеприимства
           </p>
-          <div className="flex gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center px-4">
             <Button 
               size="lg"
               onClick={() => scrollToSection('menu')}
-              className="gap-2"
+              className="gap-2 w-full sm:w-auto"
             >
               <Icon name="UtensilsCrossed" size={20} />
               Посмотреть меню
@@ -165,6 +205,7 @@ const Index = () => {
               size="lg"
               variant="outline"
               onClick={() => scrollToSection('order')}
+              className="w-full sm:w-auto"
             >
               Заказать банкет
             </Button>
@@ -172,9 +213,9 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="location" className="py-20 px-4 bg-card">
+      <section id="location" className="py-12 md:py-20 px-4 bg-card">
         <div className="container mx-auto max-w-5xl">
-          <h3 className="text-3xl md:text-4xl font-bold text-center mb-12">Местоположение</h3>
+          <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-8 md:mb-12">Местоположение</h3>
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="space-y-6">
               <div className="flex items-start gap-4">
@@ -206,45 +247,45 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-20 px-4">
+      <section className="py-12 md:py-20 px-4">
         <div className="container mx-auto max-w-5xl">
-          <h3 className="text-3xl md:text-4xl font-bold text-center mb-4">О ресторане</h3>
-          <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+          <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-3 md:mb-4">О ресторане</h3>
+          <p className="text-center text-muted-foreground mb-8 md:mb-12 max-w-2xl mx-auto text-sm md:text-base">
             Уютная атмосфера и настоящие восточные традиции
           </p>
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="p-6 text-center hover:shadow-lg transition-shadow">
-              <Icon name="Users" size={40} className="mx-auto mb-4 text-primary" />
-              <h4 className="text-xl font-semibold mb-2">60 посадочных мест</h4>
-              <p className="text-muted-foreground">Просторный зал для комфортного отдыха</p>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
+            <Card className="p-4 md:p-6 text-center hover:shadow-lg transition-shadow">
+              <Icon name="Users" size={32} className="mx-auto mb-3 md:mb-4 text-primary" />
+              <h4 className="text-base md:text-xl font-semibold mb-1 md:mb-2">60 посадочных мест</h4>
+              <p className="text-muted-foreground text-xs md:text-base">Просторный зал для комфортного отдыха</p>
             </Card>
-            <Card className="p-6 text-center hover:shadow-lg transition-shadow">
-              <Icon name="UtensilsCrossed" size={40} className="mx-auto mb-4 text-primary" />
-              <h4 className="text-xl font-semibold mb-2">Среднеазиатская кухня</h4>
-              <p className="text-muted-foreground">Традиционные блюда по семейным рецептам</p>
+            <Card className="p-4 md:p-6 text-center hover:shadow-lg transition-shadow">
+              <Icon name="UtensilsCrossed" size={32} className="mx-auto mb-3 md:mb-4 text-primary" />
+              <h4 className="text-base md:text-xl font-semibold mb-1 md:mb-2">Среднеазиатская кухня</h4>
+              <p className="text-muted-foreground text-xs md:text-base">Традиционные блюда по семейным рецептам</p>
             </Card>
-            <Card className="p-6 text-center hover:shadow-lg transition-shadow">
-              <Icon name="Heart" size={40} className="mx-auto mb-4 text-primary" />
-              <h4 className="text-xl font-semibold mb-2">Домашняя атмосфера</h4>
-              <p className="text-muted-foreground">Восточное гостеприимство и уют</p>
+            <Card className="p-4 md:p-6 text-center hover:shadow-lg transition-shadow sm:col-span-2 md:col-span-1">
+              <Icon name="Heart" size={32} className="mx-auto mb-3 md:mb-4 text-primary" />
+              <h4 className="text-base md:text-xl font-semibold mb-1 md:mb-2">Домашняя атмосфера</h4>
+              <p className="text-muted-foreground text-xs md:text-base">Восточное гостеприимство и уют</p>
             </Card>
           </div>
         </div>
       </section>
 
-      <section id="menu" className="py-20 px-4 bg-card">
+      <section id="menu" className="py-12 md:py-20 px-4 bg-card">
         <div className="container mx-auto max-w-4xl">
-          <h3 className="text-3xl md:text-4xl font-bold text-center mb-4">Наше меню</h3>
-          <p className="text-center text-muted-foreground mb-12">
+          <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-3 md:mb-4">Наше меню</h3>
+          <p className="text-center text-muted-foreground mb-8 md:mb-12 text-sm md:text-base">
             Популярные блюда восточной кухни
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
             {menuCategories.map((category, index) => (
               <div key={index}>
                 <button
                   onClick={() => toggleCategory(index)}
-                  className="w-full relative h-48 md:h-56 rounded-xl overflow-hidden group cursor-pointer"
+                  className="w-full relative h-40 md:h-56 rounded-xl overflow-hidden group cursor-pointer"
                 >
                   <img 
                     src={category.image}
@@ -252,29 +293,29 @@ const Index = () => {
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end">
-                    <div className="w-full p-4 md:p-6 flex justify-between items-center">
-                      <h4 className="text-xl md:text-2xl font-bold text-white">{category.name}</h4>
+                    <div className="w-full p-3 md:p-6 flex justify-between items-center">
+                      <h4 className="text-lg md:text-2xl font-bold text-white">{category.name}</h4>
                       <Icon 
                         name={expandedCategory === index ? "ChevronUp" : "ChevronDown"} 
-                        size={24} 
-                        className="text-white transition-transform"
+                        size={20} 
+                        className="text-white transition-transform md:w-6 md:h-6"
                       />
                     </div>
                   </div>
                 </button>
                 
                 <div className={`overflow-hidden transition-all duration-500 ${
-                  expandedCategory === index ? 'max-h-[2000px] mt-4' : 'max-h-0'
+                  expandedCategory === index ? 'max-h-[2000px] mt-3 md:mt-4' : 'max-h-0'
                 }`}>
-                  <div className="space-y-3 pb-4">
+                  <div className="space-y-2 md:space-y-3 pb-3 md:pb-4">
                     {category.items.map((item, itemIndex) => (
-                      <Card key={itemIndex} className="p-4 hover:shadow-lg transition-shadow">
-                        <div className="flex justify-between items-start gap-3">
+                      <Card key={itemIndex} className="p-3 md:p-4 hover:shadow-lg transition-shadow">
+                        <div className="flex justify-between items-start gap-2 md:gap-3">
                           <div className="flex-1">
-                            <h5 className="text-base md:text-lg font-semibold mb-1">{item.name}</h5>
+                            <h5 className="text-sm md:text-lg font-semibold mb-0.5 md:mb-1">{item.name}</h5>
                             <p className="text-muted-foreground text-xs md:text-sm">{item.description}</p>
                           </div>
-                          <span className="text-base md:text-lg font-bold text-primary whitespace-nowrap">{item.price}</span>
+                          <span className="text-sm md:text-lg font-bold text-primary whitespace-nowrap">{item.price}</span>
                         </div>
                       </Card>
                     ))}
@@ -286,14 +327,14 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="order" className="py-20 px-4">
+      <section id="order" className="py-12 md:py-20 px-4">
         <div className="container mx-auto max-w-2xl">
-          <h3 className="text-3xl md:text-4xl font-bold text-center mb-4">Оформить заказ</h3>
-          <p className="text-center text-muted-foreground mb-12">
+          <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-3 md:mb-4">Оформить заказ</h3>
+          <p className="text-center text-muted-foreground mb-8 md:mb-12 text-sm md:text-base">
             Заполните форму, и мы свяжемся с вами через WhatsApp
           </p>
-          <Card className="p-8">
-            <div className="space-y-6">
+          <Card className="p-4 md:p-8">
+            <div className="space-y-4 md:space-y-6">
               <div>
                 <label className="block text-sm font-medium mb-2">Ваше имя</label>
                 <Input 
@@ -332,18 +373,18 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-card">
+      <section className="py-12 md:py-20 px-4 bg-card">
         <div className="container mx-auto max-w-2xl text-center">
-          <h3 className="text-3xl md:text-4xl font-bold mb-4">Остались вопросы?</h3>
-          <p className="text-muted-foreground mb-8">
+          <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">Остались вопросы?</h3>
+          <p className="text-muted-foreground mb-6 md:mb-8 text-sm md:text-base">
             Свяжитесь с нами удобным способом
           </p>
-          <div className="flex gap-4 justify-center">
-            <Button size="lg" variant="outline" className="gap-2">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center px-4">
+            <Button size="lg" variant="outline" className="gap-2 w-full sm:w-auto">
               <Icon name="Phone" size={20} />
               Позвонить
             </Button>
-            <Button size="lg" className="gap-2">
+            <Button size="lg" className="gap-2 w-full sm:w-auto">
               <Icon name="MessageCircle" size={20} />
               WhatsApp
             </Button>
@@ -351,21 +392,21 @@ const Index = () => {
         </div>
       </section>
 
-      <footer className="py-12 px-4 bg-foreground text-background">
+      <footer className="py-8 md:py-12 px-4 bg-foreground text-background">
         <div className="container mx-auto max-w-5xl">
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 mb-6 md:mb-8">
             <div>
-              <h4 className="font-bold text-lg mb-4">Южная ночь</h4>
-              <p className="text-sm opacity-90">Ресторан среднеазиатской кухни</p>
+              <h4 className="font-bold text-base md:text-lg mb-3 md:mb-4">Южная ночь</h4>
+              <p className="text-xs md:text-sm opacity-90">Ресторан среднеазиатской кухни</p>
             </div>
             <div>
-              <h4 className="font-bold text-lg mb-4">Контакты</h4>
-              <p className="text-sm opacity-90">+7 (999) 999-99-99</p>
-              <p className="text-sm opacity-90">info@southernnight.ru</p>
+              <h4 className="font-bold text-base md:text-lg mb-3 md:mb-4">Контакты</h4>
+              <p className="text-xs md:text-sm opacity-90">+7 (999) 999-99-99</p>
+              <p className="text-xs md:text-sm opacity-90">info@southernnight.ru</p>
             </div>
-            <div>
-              <h4 className="font-bold text-lg mb-4">Время работы</h4>
-              <p className="text-sm opacity-90">Ежедневно 11:00 - 23:00</p>
+            <div className="sm:col-span-2 md:col-span-1">
+              <h4 className="font-bold text-base md:text-lg mb-3 md:mb-4">Время работы</h4>
+              <p className="text-xs md:text-sm opacity-90">Ежедневно 11:00 - 23:00</p>
             </div>
           </div>
 
