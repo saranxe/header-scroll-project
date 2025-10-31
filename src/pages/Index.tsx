@@ -29,37 +29,37 @@ const Index = () => {
       name: 'Плов с бараниной',
       description: 'Ароматный рис с нежной бараниной, морковью и нутом',
       price: '850 ₽',
-      image: '/placeholder.svg'
+      image: 'https://images.unsplash.com/photo-1625937286074-9ca519d5d9df?w=800&q=80'
     },
     {
       name: 'Шашлык из баранины',
       description: 'Сочные кусочки мяса, маринованные в специях',
       price: '1200 ₽',
-      image: '/placeholder.svg'
+      image: 'https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=800&q=80'
     },
     {
       name: 'Лагман',
       description: 'Домашняя лапша с мясом и овощами в пряном бульоне',
       price: '650 ₽',
-      image: '/placeholder.svg'
+      image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800&q=80'
     },
     {
       name: 'Самса с мясом',
       description: 'Хрустящие слоеные пирожки с сочной начинкой',
       price: '200 ₽',
-      image: '/placeholder.svg'
+      image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&q=80'
     },
     {
       name: 'Манты',
       description: 'Паровые пельмени с бараниной и луком',
       price: '550 ₽',
-      image: '/placeholder.svg'
+      image: 'https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=800&q=80'
     },
     {
       name: 'Шурпа',
       description: 'Наваристый суп с бараниной и овощами',
       price: '450 ₽',
-      image: '/placeholder.svg'
+      image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800&q=80'
     }
   ];
 
@@ -218,8 +218,12 @@ const Index = () => {
                 key={index} 
                 className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
               >
-                <div className="aspect-video bg-muted flex items-center justify-center">
-                  <Icon name="ImageIcon" size={48} className="text-muted-foreground" />
+                <div className="aspect-video bg-muted overflow-hidden">
+                  <img 
+                    src={item.image} 
+                    alt={item.name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div className="p-6">
                   <div className="flex justify-between items-start mb-2">
