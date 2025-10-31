@@ -4,8 +4,11 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import Icon from '@/components/ui/icon';
+import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
+  const navigate = useNavigate();
+  
   const [orderForm, setOrderForm] = useState({
     name: '',
     phone: '',
@@ -211,19 +214,20 @@ const Index = () => {
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center px-4">
             <Button 
               size="lg"
-              onClick={() => scrollToSection('menu')}
+              onClick={() => navigate('/order')}
               className="gap-2 w-full sm:w-auto"
             >
-              <Icon name="UtensilsCrossed" size={20} />
-              Посмотреть меню
+              <Icon name="ShoppingCart" size={20} />
+              Оформить заказ
             </Button>
             <Button 
               size="lg"
               variant="outline"
-              onClick={() => scrollToSection('order')}
+              onClick={() => scrollToSection('menu')}
               className="w-full sm:w-auto"
             >
-              Заказать банкет
+              <Icon name="UtensilsCrossed" size={20} />
+              Посмотреть меню
             </Button>
           </div>
         </div>
@@ -238,7 +242,16 @@ const Index = () => {
                 <Icon name="MapPin" size={24} className="text-primary mt-1" />
                 <div>
                   <h4 className="font-semibold mb-1">Адрес</h4>
-                  <p className="text-muted-foreground">ул. Примерная, д. 123, Москва</p>
+                  <p className="text-muted-foreground">ул. Курчатова, 9Б</p>
+                  <a 
+                    href="https://yandex.ru/maps/?text=ул.%20Курчатова%2C%209Б" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline text-sm flex items-center gap-1 mt-1"
+                  >
+                    <Icon name="ExternalLink" size={14} />
+                    Открыть в Яндекс.Картах
+                  </a>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -257,10 +270,10 @@ const Index = () => {
               </div>
             </div>
             <div className="h-[300px] md:h-[400px] rounded-lg overflow-hidden order-1 md:order-2">
-              <img 
-                src="https://cdn.poehali.dev/projects/62c59828-fd54-41ce-bde1-5be26c704956/files/60650c26-489c-40e3-95d4-af1a685e11de.jpg"
-                alt="Интерьер ресторана"
-                className="w-full h-full object-cover"
+              <iframe 
+                src="https://yandex.ru/map-widget/v1/?ll=37.617635%2C55.755819&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1MzE4MDE1MhI_0KDQvtGB0YHQuNGPLCDQnNC-0YHQutCy0LAsINGD0LvQuNGG0LAg0JrRg9GA0YfQsNGC0L7QstCwLCA50JEiCg1jkhxCFUouWkI%2C&z=16"
+                className="w-full h-full border-0"
+                allowFullScreen
               />
             </div>
           </div>
