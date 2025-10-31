@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -24,44 +24,75 @@ const Index = () => {
     window.open(`https://wa.me/79999999999?text=${encodeURIComponent(text)}`, '_blank');
   };
 
-  const menuItems = [
+  const [currentMenuCategory, setCurrentMenuCategory] = useState(0);
+  const menuScrollRef = useRef<HTMLDivElement>(null);
+
+  const menuCategories = [
     {
-      name: 'Плов с бараниной',
-      description: 'Ароматный рис с нежной бараниной, морковью и нутом',
-      price: '850 ₽',
-      image: 'https://images.unsplash.com/photo-1625937286074-9ca519d5d9df?w=800&q=80'
+      name: 'Комплексный обед',
+      image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80',
+      items: [
+        { name: 'Обед №1', description: 'Суп + Второе + Салат + Напиток', price: '450 ₽' },
+        { name: 'Обед №2', description: 'Плов + Салат + Чай', price: '500 ₽' },
+        { name: 'Обед №3', description: 'Лагман + Самса + Напиток', price: '520 ₽' }
+      ]
     },
     {
-      name: 'Шашлык из баранины',
-      description: 'Сочные кусочки мяса, маринованные в специях',
-      price: '1200 ₽',
-      image: 'https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=800&q=80'
+      name: 'Основное меню',
+      image: 'https://images.unsplash.com/photo-1625937286074-9ca519d5d9df?w=800&q=80',
+      items: [
+        { name: 'Плов с бараниной', description: 'Ароматный рис с нежной бараниной, морковью и нутом', price: '850 ₽' },
+        { name: 'Шашлык из баранины', description: 'Сочные кусочки мяса, маринованные в специях', price: '1200 ₽' },
+        { name: 'Лагман', description: 'Домашняя лапша с мясом и овощами в пряном бульоне', price: '650 ₽' },
+        { name: 'Манты', description: 'Паровые пельмени с бараниной и луком', price: '550 ₽' },
+        { name: 'Шурпа', description: 'Наваристый суп с бараниной и овощами', price: '450 ₽' }
+      ]
     },
     {
-      name: 'Лагман',
-      description: 'Домашняя лапша с мясом и овощами в пряном бульоне',
-      price: '650 ₽',
-      image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800&q=80'
+      name: 'Десерты',
+      image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=80',
+      items: [
+        { name: 'Пахлава', description: 'Слоеное тесто с орехами и медом', price: '250 ₽' },
+        { name: 'Чак-чак', description: 'Традиционная сладость с медом', price: '200 ₽' },
+        { name: 'Халва', description: 'Восточная сладость из кунжута', price: '180 ₽' }
+      ]
     },
     {
-      name: 'Самса с мясом',
-      description: 'Хрустящие слоеные пирожки с сочной начинкой',
-      price: '200 ₽',
-      image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&q=80'
+      name: 'Выпечка',
+      image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&q=80',
+      items: [
+        { name: 'Самса с мясом', description: 'Хрустящие слоеные пирожки с сочной начинкой', price: '200 ₽' },
+        { name: 'Самса с тыквой', description: 'Вегетарианский вариант с ароматной тыквой', price: '150 ₽' },
+        { name: 'Лепешка тандырная', description: 'Свежая лепешка из тандыра', price: '80 ₽' }
+      ]
     },
     {
-      name: 'Манты',
-      description: 'Паровые пельмени с бараниной и луком',
-      price: '550 ₽',
-      image: 'https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=800&q=80'
+      name: 'Банкетное меню',
+      image: 'https://images.unsplash.com/photo-1555244162-803834f70033?w=800&q=80',
+      items: [
+        { name: 'Банкет Стандарт', description: 'Ассорти закусок, плов, шашлык, салаты', price: '2500 ₽/чел' },
+        { name: 'Банкет Премиум', description: 'Расширенное меню с деликатесами', price: '3500 ₽/чел' },
+        { name: 'Фуршет', description: 'Легкие закуски и напитки', price: '1500 ₽/чел' }
+      ]
     },
     {
-      name: 'Шурпа',
-      description: 'Наваристый суп с бараниной и овощами',
-      price: '450 ₽',
-      image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800&q=80'
+      name: 'Шаверма',
+      image: 'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=800&q=80',
+      items: [
+        { name: 'Шаверма с курицей', description: 'Сочная курица с овощами в лаваше', price: '350 ₽' },
+        { name: 'Шаверма с говядиной', description: 'Говядина с фирменным соусом', price: '400 ₽' },
+        { name: 'Шаверма вегетарианская', description: 'Овощи и сыр фета', price: '300 ₽' }
+      ]
     }
   ];
+
+  const scrollMenu = (direction: 'left' | 'right') => {
+    if (direction === 'left') {
+      setCurrentMenuCategory(prev => (prev > 0 ? prev - 1 : menuCategories.length - 1));
+    } else {
+      setCurrentMenuCategory(prev => (prev < menuCategories.length - 1 ? prev + 1 : 0));
+    }
+  };
 
   return (
     <div className="min-h-screen">
@@ -72,7 +103,7 @@ const Index = () => {
             
             <nav className="hidden md:flex items-center gap-8">
               <a 
-                href="https://eda.yandex.ru" 
+                href="https://eda.yandex.ru/r/uznaa-noc?placeSlug=yuzhnaya_noch_2jp37" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-sm hover:text-primary transition-colors"
@@ -212,28 +243,72 @@ const Index = () => {
           <p className="text-center text-muted-foreground mb-12">
             Популярные блюда восточной кухни
           </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {menuItems.map((item, index) => (
-              <Card 
-                key={index} 
-                className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+          
+          <div className="relative">
+            <button 
+              onClick={() => scrollMenu('left')}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-background/90 backdrop-blur-sm p-3 rounded-full shadow-lg hover:bg-background transition-all"
+            >
+              <Icon name="ChevronLeft" size={24} />
+            </button>
+            
+            <button 
+              onClick={() => scrollMenu('right')}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-background/90 backdrop-blur-sm p-3 rounded-full shadow-lg hover:bg-background transition-all"
+            >
+              <Icon name="ChevronRight" size={24} />
+            </button>
+
+            <div className="overflow-hidden px-12">
+              <div 
+                ref={menuScrollRef}
+                className="transition-transform duration-500 ease-in-out"
+                style={{ transform: `translateX(-${currentMenuCategory * 100}%)` }}
               >
-                <div className="aspect-video bg-muted overflow-hidden">
-                  <img 
-                    src={item.image} 
-                    alt={item.name}
-                    className="w-full h-full object-cover"
-                  />
+                <div className="flex">
+                  {menuCategories.map((category, catIndex) => (
+                    <div key={catIndex} className="w-full flex-shrink-0">
+                      <div className="mb-8">
+                        <div className="relative h-64 rounded-xl overflow-hidden mb-6">
+                          <img 
+                            src={category.image}
+                            alt={category.name}
+                            className="w-full h-full object-cover"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                            <h4 className="text-3xl font-bold text-white p-6">{category.name}</h4>
+                          </div>
+                        </div>
+                        
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                          {category.items.map((item, itemIndex) => (
+                            <Card key={itemIndex} className="p-6 hover:shadow-lg transition-shadow">
+                              <div className="flex justify-between items-start mb-2">
+                                <h5 className="text-lg font-semibold">{item.name}</h5>
+                                <span className="text-lg font-bold text-primary whitespace-nowrap ml-2">{item.price}</span>
+                              </div>
+                              <p className="text-muted-foreground text-sm">{item.description}</p>
+                            </Card>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-                <div className="p-6">
-                  <div className="flex justify-between items-start mb-2">
-                    <h4 className="text-xl font-semibold">{item.name}</h4>
-                    <span className="text-lg font-bold text-primary">{item.price}</span>
-                  </div>
-                  <p className="text-muted-foreground text-sm">{item.description}</p>
-                </div>
-              </Card>
-            ))}
+              </div>
+            </div>
+            
+            <div className="flex justify-center gap-2 mt-8">
+              {menuCategories.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentMenuCategory(index)}
+                  className={`w-2 h-2 rounded-full transition-all ${
+                    currentMenuCategory === index ? 'bg-primary w-8' : 'bg-muted-foreground/30'
+                  }`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -320,9 +395,7 @@ const Index = () => {
               <p className="text-sm opacity-90">Ежедневно 11:00 - 23:00</p>
             </div>
           </div>
-          <div className="border-t border-background/20 pt-8 text-center text-sm opacity-75">
-            <p>Ключевые слова: плов, шашлык, лагман, манты, самса, среднеазиатская кухня, восточная кухня, узбекская кухня, банкет, доставка еды</p>
-          </div>
+
         </div>
       </footer>
     </div>
